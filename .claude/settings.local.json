@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(sqlite3 '/Users/sewon/Library/Containers/com.kakao.KakaoTalkMac/Data/Library/Application Support/com.kakao.KakaoTalkMac/4cac46cf0bfaf974cff1b1777d7001b6c3934e3ffda29899ee6f359bee180bcb3bd54ac58a2534' .tables)",
+      "Bash(osascript *)",
+      "Bash(python3 *)",
+      "Bash(pip3 install *)",
+      "Bash(swift)",
+      "Bash(brew install *)",
+      "Bash(cliclick dc:1820,556)",
+      "Bash(ps -p 11226 -o pid,stat,etime,command)",
+      "Bash(ps -p 11228 -o pid,stat,etime,command)",
+      "Bash(python -m kakao_collector.main)",
+      "Bash(awk '{print $1, $2, $10, $11}')",
+      "Bash(kill 35089 35091)",
+      "Bash(echo \"PID: $!\")",
+      "Read(//proc/35990/fd/**)",
+      "Bash(wait 35990)",
+      "Read(//dev/**)",
+      "Bash(kill 35990)",
+      "Bash(tee /tmp/kakao_run.log)",
+      "Bash(echo \"started, PID=$!\")",
+      "Bash(echo \"PID=$!\")",
+      "Bash(awk '{print $2, $10, $11}')"
+    ]
+  }
+}
