@@ -20,7 +20,6 @@ pip-delete-this-directory.txt
 .Trashes
 
 # Project specific Data folders (데이터 및 개인정보 유출 방지)
-\[00_수동다운로드_RAW\]/
-\[01_정리전_대화및파일\]/
-\[02_정리완료_업무일지\]/
-\[03_아카이브\]/
+local_data/
+obsidian_vault/
+database/

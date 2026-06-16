@@ -1,12 +1,12 @@
 from pathlib import Path
 
 # 프로젝트 루트 기준 경로
-_BASE = Path(__file__).parent.parent
+_BASE = Path(__file__).parent.parent.parent
 
-RAW_DIR = _BASE / "[00_수동다운로드_RAW]"
-OUTPUT_DIR = _BASE / "[01_정리전_대화및파일]"
-JOURNAL_DIR = _BASE / "[02_정리완료_업무일지]"
-ARCHIVE_DIR = _BASE / "[03_아카이브]"
+RAW_DIR = _BASE / "local_data/00_raw"
+OUTPUT_DIR = _BASE / "local_data/01_preprocessed"
+JOURNAL_DIR = _BASE / "obsidian_vault/02_journals"
+ARCHIVE_DIR = _BASE / "local_data/03_archive"
 KAKAO_FOLDER_NAME = "거래처"
 
 # 필요한 폴더를 미리 생성
