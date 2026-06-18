@@ -17,8 +17,14 @@ def parse_kakao_csv(path: Path) -> list[dict]:
     return rows
 
 
-def filter_by_date(rows: list[dict], target: date) -> list[dict]:
-    return [r for r in rows if r["datetime"].date() == target]
+def group_by_date(rows: list[dict]) -> dict[date, list[dict]]:
+    groups = {}
+    for r in rows:
+        d = r["datetime"].date()
+        if d not in groups:
+            groups[d] = []
+        groups[d].append(r)
+    return groups
 
 
 def extract_file_refs(rows: list[dict]) -> list[str]:

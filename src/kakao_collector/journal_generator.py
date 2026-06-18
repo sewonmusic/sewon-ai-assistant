@@ -1,5 +1,6 @@
 import sys
 import shutil
+import unicodedata
 from pathlib import Path
 from . import config
 from .llm_processor import generate_journal_markdown
@@ -22,7 +23,8 @@ def run_journal_generation():
         if len(parts) != 2:
             continue
             
-        date_str, partner = parts[0], parts[1]
+        date_str = parts[0]
+        partner = unicodedata.normalize('NFC', parts[1])
         print(f"\n▶ [{partner}] 업무 일지 작성 중...")
         
         chat_file = folder / f"대화록_{date_str.replace('-', '')}.txt"

@@ -12,7 +12,7 @@ from . import config
 from .csv_parser import (
     extract_file_refs,
     extract_links,
-    filter_by_date,
+    group_by_date,
     format_as_txt,
     parse_kakao_csv,
 )
@@ -28,9 +28,8 @@ from .file_manager import (
 from .link_scraper import scrape_link_metadata, format_links
 
 
-def run(target_date: date | None = None) -> None:
-    today = target_date or date.today()
-    print(f"[전처리 시작] 대상 날짜: {today}")
+def run() -> None:
+    print(f"[전처리 시작] CSV의 전체 대화를 파싱합니다.")
 
     csv_files = get_all_csv_files()
     if not csv_files:
@@ -47,39 +46,54 @@ def run(target_date: date | None = None) -> None:
         print(f"\n▶ 처리 중: {room_name} ({csv_path.name})")
 
         rows = parse_kakao_csv(csv_path)
-        today_rows = filter_by_date(rows, today)
+        date_groups = group_by_date(rows)
 
-        if not today_rows:
-            print("  오늘 날짜의 대화가 없습니다. 건너뜀.")
+        if not date_groups:
+            print("  대화 내용이 없습니다. 건너뜀.")
             continue
 
-        print(f"  오늘 메시지: {len(today_rows)}건")
+        sorted_dates = sorted(date_groups.keys())
+        latest_date = sorted_dates[-1]
 
-        out_dir = create_room_dir(room_name, today)
+        for target_date in sorted_dates:
+            target_rows = date_groups[target_date]
+            
+            dir_name = f"{target_date.strftime('%Y-%m-%d')}_{room_name}"
+            out_dir = config.OUTPUT_DIR / dir_name
+            
+            if out_dir.exists():
+                print(f"  {target_date} 날짜는 이미 파싱됨. 건너뜀.")
+                continue
 
-        save_chat_log(format_as_txt(today_rows), out_dir, today)
-        print(f"  대화록 저장 완료: {out_dir.name}")
+            print(f"  새로운 대화 파싱 중: {target_date} ({len(target_rows)}건)")
+            out_dir.mkdir(parents=True, exist_ok=True)
 
-        links = extract_links(today_rows)
-        if links:
-            print(f"  발견된 링크 {len(links)}개 크롤링 중...")
-            links_info = [scrape_link_metadata(url) for url in links]
-            links_text = format_links(links_info)
-            (out_dir / f"링크목록_{today.strftime('%Y%m%d')}.txt").write_text(links_text, encoding="utf-8")
-            print("  링크 목록 저장 완료")
+            save_chat_log(format_as_txt(target_rows), out_dir, target_date)
+            print(f"  대화록 저장 완료: {out_dir.name}")
 
-        file_refs = extract_file_refs(today_rows)
-        moved_docs = move_explicit_files(file_refs, out_dir)
-        if moved_docs > 0:
-            print(f"  문서 파일 이동 완료: {moved_docs}개")
+            links = extract_links(target_rows)
+            if links:
+                print(f"  발견된 링크 {len(links)}개 크롤링 중...")
+                links_info = [scrape_link_metadata(url) for url in links]
+                links_text = format_links(links_info)
+                (out_dir / f"링크목록_{target_date.strftime('%Y%m%d')}.txt").write_text(links_text, encoding="utf-8")
+                print("  링크 목록 저장 완료")
+
+            file_refs = extract_file_refs(target_rows)
+            moved_docs = move_explicit_files(file_refs, out_dir)
+            if moved_docs > 0:
+                print(f"  문서 파일 이동 완료: {moved_docs}개")
 
         media_to_move = file_clusters.get(csv_path, [])
-        moved_media = move_clustered_media(media_to_move, out_dir)
-        if moved_media > 0:
-            print(f"  미디어 파일(시간 근접 매칭) 이동 완료: {moved_media}개")
+        if media_to_move:
+            latest_out_dir = config.OUTPUT_DIR / f"{latest_date.strftime('%Y-%m-%d')}_{room_name}"
+            latest_out_dir.mkdir(parents=True, exist_ok=True)
+            moved_media = move_clustered_media(media_to_move, latest_out_dir)
+            if moved_media > 0:
+                print(f"  미디어 파일 일괄 이동 완료 ({latest_date} 폴더): {moved_media}개")
 
-        shutil.move(str(csv_path), str(out_dir / csv_path.name))
-        print("  원본 CSV 이동 완료")
+        csv_path.unlink()
+        print("  원본 CSV 삭제 완료")
 
     print("\n[전처리 완료]")
 
