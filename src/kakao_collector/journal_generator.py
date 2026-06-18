@@ -27,23 +27,31 @@ def run_journal_generation():
         partner = unicodedata.normalize('NFC', parts[1])
         print(f"\n▶ [{partner}] 업무 일지 작성 중...")
         
-        chat_file = folder / f"대화록_{date_str.replace('-', '')}.txt"
-        links_file = folder / f"링크목록_{date_str.replace('-', '')}.txt"
+        # 대화록 및 링크목록 파일명 정의
+        chat_filename = f"대화록_{date_str.replace('-', '')}.txt"
+        links_filename = f"링크목록_{date_str.replace('-', '')}.txt"
+        
+        chat_file = folder / chat_filename
+        links_file = folder / links_filename
         
         chat_text = chat_file.read_text(encoding="utf-8") if chat_file.exists() else "대화록 없음"
         links_text = links_file.read_text(encoding="utf-8") if links_file.exists() else ""
         
         doc_list = []
-        doc_dir = folder / "[문서_파일]"
-        if doc_dir.exists():
-            doc_list = [f.name for f in doc_dir.iterdir() if f.is_file()]
-            
         media_paths = []
-        media_dir = folder / "[사진_동영상]"
-        if media_dir.exists():
-            for f in media_dir.iterdir():
-                if f.is_file() and f.suffix.lower() in ['.jpg', '.jpeg', '.png', '.webp']:
+        
+        # 폴더 루트의 파일을 직접 확인하여 이미지와 문서로 분류
+        if folder.exists():
+            for f in folder.iterdir():
+                if not f.is_file():
+                    continue
+                if f.name in [chat_filename, links_filename, ".DS_Store"]:
+                    continue
+                    
+                if f.suffix.lower() in ['.jpg', '.jpeg', '.png', '.webp']:
                     media_paths.append(f)
+                else:
+                    doc_list.append(f.name)
             
         try:
             markdown_content = generate_journal_markdown(
