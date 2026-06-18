@@ -92,12 +92,10 @@ def cluster_unclassified_files(csv_paths: list[Path]) -> dict[Path, list[Path]]:
 def move_clustered_media(media_files: list[Path], out_dir: Path) -> int:
     """클러스터링된 미디어 파일 이동"""
     moved_count = 0
-    media_dir = out_dir / "[사진_동영상]"
     
     for file_path in media_files:
         if file_path.exists():
-            media_dir.mkdir(exist_ok=True)
-            shutil.move(str(file_path), str(media_dir / file_path.name))
+            shutil.move(str(file_path), str(out_dir / file_path.name))
             moved_count += 1
             
     return moved_count
@@ -109,12 +107,10 @@ def move_explicit_files(file_refs: list[str], out_dir: Path) -> int:
     if not file_refs:
         return 0
         
-    doc_dir = out_dir / "[문서_파일]"
     for fname in file_refs:
         src = config.RAW_DIR / fname
         if src.exists():
-            doc_dir.mkdir(exist_ok=True)
-            shutil.move(str(src), str(doc_dir / fname))
+            shutil.move(str(src), str(out_dir / fname))
             moved_count += 1
             
     return moved_count
