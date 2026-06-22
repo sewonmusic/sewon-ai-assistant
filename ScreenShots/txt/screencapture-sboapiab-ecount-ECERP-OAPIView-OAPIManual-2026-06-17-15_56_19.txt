@@ -1,0 +1,191 @@
+ECOUNTAPI
+자주묻는질문(FAQ)
+공통(필수)API
+Zone
+로그인
+기초등록API
+거래처등록
+품목등록
+품목조회(단건)
+품목조회
+영업관리API
+견적서입력
+주문서입력
+판매입력
+구매관리API
+발주서조회
+구매입력
+생산관리API
+작업지시서입력
+생산불출입력
+생산입고 1
+(재고)출력물API
+재고현황(단건)
+재고현황
+• 창고별재고현황(단건)
+창고별재고현황
+회계API
+매출 매입전표 ! 자동분개
+쇼핑몰API
+주문API(쇼핑몰관리)
+im/
+창고별재고현황(단건)
+• 개요
+외부 서비스와 연계를 통해서 ERP의 재고현황을 조회할 수 있습니다.
+® 요청 데이터 형식
+항목
+설명
+호출방식
+Content Type
+Test URL
+Request URL
+자료포맷 종류
+POST
+applicationison
+https://sboapiZoNEr.ecount.com/OAPI2/nventoryBalance ViewinventoryBalanceStatusByLocation?SESSION_ID=(SESSIONLID}
+https://oapi(zoNE.ecount.com/OAPI2/InventoryBalance/viewinventoryBalance StatusByLocation?SESSION_ID=(SESSION_ID}
+JSON(Paramenter, Result)
+• 자료포맷 종류
+변수
+변수명
+SESSION_ID
+세션|D
+자릿수
+STRING(50)
+이카운트필수
+양식필수
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+BASE_DATE
+검색 일시
+STRING(8)
+Y
+PROD_CD
+품목코드
+STRING(2000)
+111 :
+® Resuit
+창고코드
+STRING(700)
+함
+CHAR(1)
+CHAR(1)
+포함
+CHAR(1)
+- 조회하기 원하는 날짜를 입력합니다.
+입력글자제한
+- YYYYMMDD
+입력내용
+- 조회하기 원하는 품목 코드를 입력합니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20자
+입력내용
+- 조회하기 원하는 창고 코드를 입력합니다.
+입덕금사서안
+- 기 등록된 창고코드를 입력합니다.
+- 최대 5자
+기본값 'N'
+입력값 Y, N
+기본값 'N'
+입력값 Y, N
+기본값 'N'
+입력값 Y, N'
+변수
+변수명
+자릿수
+필수여부
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+EXPIRE_DATE
+QUANTITY INFO
+TRACELID
+TotalCnt
+Result
+WHCD
+WHLDES
+PROD_CD
+PROD_DES
+PROD_SIZE_DES
+BAL_QTY
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+200(정상)
+오류가 발생할 경우
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+성공건수
+Int
+수어신 날싸의 이카운트 API 현새버선서비스가 종료됩니나
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+조회에 성공한 창고별 품목 수
+창고코드
+창고명
+품목코드
+품목명
+품목명[규격]
+재고수량
+STRING(20)
+STRING(100)
+STRING(20)
+STRING(100)
+STRING(100)
+INT
+창고코드
+창고명
+품목코드
+품목명
+품목명[규격]
+재고수량
+• Example Parameter
+RL : https://oapi{ZONE}.ecount.com/OAPI/V2/InventoryBalance/ViewInventoryBalancestatusByLocation?SESSION_ID={SESSION_IC
+/ Replace {ZONE} with real zone information when entering Zone data.(without t}
+{" PROD CD": 00001", "WH_CD": , "BASE_DATE": "20210629"}
+p Examole Result
+(SUCCESS)
+"Data": {
+IsSuccess : true,
+"EXPIRE_DATE":!,
+"QUANTITY_INFO": 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량 : 8/6000," 1일 허용량 : 8/10000",
+"TRACE_ID":"db6138411aad40e42dc5e209f65f6f3C",
+"Totalcnt : 5,
+},
+"Status": 200",
+"Errors": nulL,
+'Error : nutu
+"Times tamp": 2021-07-02 14:40:52.247",
+"ReauestKev" : nuLL,
+-stnab eNoL4 : True,
+"RetreshTimestamp : 0,
+"AsyncActionKey": nult
+[FAIL - Validation]
+"Data":nult,
+"status":"500",
+"Errors": [
+"ProgramId" :"",
+"Name":"",
+"Code" : "EXP00001",
+"Message" :"Check Parameter [BASE_DATE]",
+raram inuLe
+"Error":{
+"Code":0,
+"Message":"Check Parameter [BASE_DATE]",
+"MessaaeDetail"•""
+lTimpctaml.nu
+설명
+한국 (한국어)
+설명
+
+--- 페이지 구분 ---
+
+® 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

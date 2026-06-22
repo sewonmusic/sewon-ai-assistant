@@ -1,0 +1,236 @@
+[COWNT API
+Zone
+로그인
+창고별재고현황(단건)
+창고별재고현황
+회계API
+• 매출•매입전표 II 자동분개
+쇼핑몰API
+주문API(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+게시판입력
+API 직접실행(사전테스트)
+한국 (한국어)
+매출•매입전표 II 자동분개
+• 개요
+외부 서비스와 연계를 통해서 ERP의 회계전표를 입력할 수 있습니다.
+회계|> FastEntry > 일반전표> 매출전표II, 매입전표! 형태로 입력합니다.
+양식필수 값은 회사코드별로 상이합니다. 기본입력양식설정의 필수값을 확인바랍니다.
+• 요청 데이터 형식
+항목
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+0 자료포맷 종류
+변수
+ITEM4
+ITEM5
+ITEM6
+ITEM?
+ITEM8
+O Result
+변수
+설명
+POST
+applicationison
+https://sboap(ZONE).ecount.com/OAPI2/invoiceAuto/SavelnvoiceAuto?SESSION ID=(SESSION_ID}
+https://oapizoNE.ecount.com/OAPI2/InvoiceAuto/SavelnvoiceAuto?SESSION_ID={SESSION_ID}
+JSON(Paramenter, Result)
+변수명
+이카운트필수
+설명
+세션|D
+주문서 전표별 정보
+일자
+적요
+추가항목8
+변수명
+Status
+Error
+Code
+Message
+MessageDetail
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+Data
+SuccessCht
+Falilcnt
+ResultDetalls
+SipNos
+EXPIRE_DATE
+QUANTITY INFO
+TRACE LD
+성공건수
+실패건수
+처리결과
+전표번호(ERP)
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+® 매출전표 1 Example Parametert
+자릿수
+STRING(50)
+양식필수
+로그인 API 호출 후 받은 SESSIONLID(세션 ID)
+STRING()
+STRING(30)
+STRING(2)
+STRING(20)
+STRING(30)
+STRING(50)
+STRING(⑧)
+STRING(8)
+NUMERIC(16,0)
+NUMERIC(16.0)
+STRING(30)
+STRING(200)
+STRING(14)
+STRING(14)
+STRING(10)
+STRING(10)
+STRING(10)
+STRING(100)
+STRING(100)
+NUMERIC(16,0)
+NUMERIC(16,0)
+STRING(8)
+반복부분
+전표일자
+미 입력시 현재일로 입력됨
+회계관리번호
+SelrCustomizing> 환경설정 기능설정 > 공통탭> 관리No. 설정 > 회계No. 사용이며 생성기준이 직접입력인 경우에 입력함.
+매출:
+Ser-Customizing> 환경설정> 기능설정 공통탭> 회계부가세 설정> 부가세유형(매출)에 있는 코드를 입력.
+매입:
+SerCustomizing > 환경설정 > 기능설정> 공통탭> 회계·부가세 설정 > 부가세유형(매입)에 있는 코드를 입력.
+신용카드 또는 승인번호 입력.
+거래처
+거래처명
+매출: 매출계정코드 입력 예) 4019(상품매출)
+매입: 매입계정코드 입력 예) 1469(상품)
+공급가액
+부가세
+(매입전표II) 돈들어온계좌번호 / (매출전표II) 돈나간계좌번호의 코드 또는 명을 입력.
+적요
+부서코드
+프로젝트
+추가항목1(코드형)
+회계1> FastEntry > 일반전표 > 옵션> 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+회계1 > 기초등록 > 추가항목등록의 추가항목1 탭에 등록된 코드를 입력함.
+추가항목2(코드형)
+회계1> FastEntry > 일반전표> 옵션> 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+회계1> 기초등록 > 추가항목등록의 추가항목2 탭에 등록된 코드를 입력함.
+추가항목3(코드형)
+회계1> FastEntry > 일반전표> 옵션> 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+회계1 > 기초등록 > 추가항목등록의 추가항목3 탭에 등록된 코드를 입력함.
+추가항목4(문자형)
+회계1 > FastEntry > 일반전표> 옵션 > 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+추가항목5(문자형)
+회계1> FastEntry > 일반전표> 옵션 > 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+추가항목6(숫자형)
+회계1> FastEntry > 일반전표> 옵션> 입력화면설정에서 설정한 경우 입력함
+필수항목체크하면 반드시 입력해야 함.
+추가항목7(숫자형)
+회계1> FastEntry > 일반전표> 옵션> 입력화면설정에서 설정한 경우 입력함.
+필수항목체크하면 반드시 입력해야 함.
+추가항목8(일자형)
+회계1> FastEntry > 일반전표> 옵션> 입력화면설정에서 설정한 경우 입력함.
+미 입력시 현재일자로 입력됨.
+필수항목체크하면 반드시 입력해야 함.
+자릿수
+필수여부
+설명
+200(정상)
+오류가 발생할 경우
+STRING(20)
+STRING(20)
+STRING(4000)
+STRING(20)
+반복부분
+전표번호(실패시 공백)
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+"InvoiceAutoList": [t
+"BulkDatas": {
+"TRX_DATE : 20181213",
+"ACCT_DOC_NO":""
+# TAX_GUBUN": 11*,
+"S_NO":,
+"VAT_ANT": 5000",
+"ACCT_NO :
+
+--- 페이지 구분 ---
+
+"DR_CODE": "",
+"REMARKS_CD": ,
+"REMARKS": "",
+"SITE_CD": "",
+"PJT_CD": !",
+"ITEM1_CD": !
+"ITEM2_CD": "",
+• 매입전표 II Example Parameter2
+"InvoiceAutolist": [{
+"BuLkDatas": {
+"TRX_DATE": 20181113",
+"ACCT_DOC_NO":"",
+"TAX_GUBUN": 21",
+"S_NO":",
+"CUST": "0017",
+"CUST_DES": "",
+"SUPPLY_ANT": 50000",
+"VAT_AMT": 5000",
+"ACCT_NO" : "",
+"CR_CODE":
+"DR_CODE": 1469",
+"REMARKS_CD": "",
+"REMARKS" : "",
+"SITE_CD": "",
+"PJT_CD": "",
+"ITEM1_CD": "",
+"ITEM2_CD": "",
+• Example Result
+[SUCCESS]
+"Data" : [
+{
+"EXPIRE_DATE":",
+"OUANTITY_INFO": 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량" : 10/6000, " 1일 허용량" : 12/10000",
+TRACE_ID":" db6138411aad40e42dc5e209f65f6f3C",
+"SuccessCht": 2,
+"FailCnt": 0,
+"ResultDetails": "[{"IsSuccess": true,
+"TotalError": "OK", "Errors": [], "Code": nult}, {"Issuccess": true,
+"TotalError": "OK, "Errors": [], "Code": nult}]",
+"SlipNos": "["20181113-1", 20181113-2"]"
+{],
+"Status":"200",
+"Error":nult,
+"Timestamp":"2018-11-12 15:00: 49.352"
+(FAIL - Valtatton)
+"Data": [
+{
+"EXPIRE_DATE" :.,
+QUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량" : 10/6000," 1일 허용량 : 12/10000",
+"successCht": 0,
+"FailCnt": 2,
+"ResultDetails":"[{"IsSuccess": false, "TotalError": 거래처", "Errors": [{"CoLCd": "CUST", "Message": 거래처}], "Code": nult}, { "Issuccess": false, "TotalError": 거래처, "Errors": [{"COLCd": "CUST", "Messag
+"SlipNos": "[]"
+}],
+"Status":"200",
+"Error":nult,
+"Timestamp" :"2018년 6월 11일 오후 4:00: 00"
+0 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

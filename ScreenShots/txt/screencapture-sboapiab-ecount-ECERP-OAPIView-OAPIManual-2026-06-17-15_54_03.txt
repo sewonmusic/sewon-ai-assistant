@@ -1,0 +1,165 @@
+ECOUNTAPI
+자주묻는질문(FAQ)
+한국 (한국어)
+발주서조회API
+• 개요
+외부 서비스와 연계를 통해서 ERP의 발주서를 조회할 수 있습니다.
+® 요청 데이터 형식
+항목
+호출방식
+Content Type
+Test URL
+Request URL
+자료포맷 종류
+• 자료포맷 종류
+변수
+SESSION_ID
+PROD_CO
+CUST_CD
+ListParam
+BASE_DATE_FROM
+변수
+Status
+Error
+Code
+Data
+설명
+POST
+applicationison
+https://sboapizoNEy.ecount.com/OAPW2/Purchases/GetPurchasesOrderList?SESSION_ID={SESSIONLID}
+https://oapizoNer.ecount.com/OAPI2(Purchases/GetpurchasesOrderList?SESSION_ID={SESSION ID)
+JSON(Paramenter, Result)
+변수명
+세션ID
+품목코드
+거래처코드
+검색 시작일시
+검색 종료일시
+페이지번호
+표시줄수
+변수명
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+성공건수
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+자릿수
+STRING(50)
+비가부드릴수
+강식필수
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+STRING(1000)
+STRING(1000)
+- 조회하기 원하는 품목 코드를 입력합니다.
+- 여러 품목을 검색 시 구분값 1을 추가하여 조회할 수 있습니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20자
+입력내용
+- 소회하기 원하는 거래저고드를 입력합니다
+- 여러 품목을 검색 시 구분값 1'을 추가하여 조회할 수 있습니다.
+입력글자제한
+- 기 등록된 거래처코드를 입력합니다.
+- 소L SUA
+STRING(8)
+STRING(8)
+INT
+INT
+입력내용
+- 조회하기 원하는 시작 날짜를 입력합니다.
+입력글자제한
+- YYYYMMDD
+입력내용
+- 조회하기 원하는 종료 날짜를 입력합니다.
+김덕금사서안
+-YYYMMDD
+최대 30일까지 조회 가능합니다.
+기본값 1
+기본값 26
+최대값 100
+자릿수
+필수여부
+설명
+200(정상)
+오류가 발생할 경우
+Int
+수어신 님싸의 이카부트 A의 현재버서서비스가 종료됩니다
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+반복부분
+설명
+회계API
+분개
+쇼핑몰API
+주문AP(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+게시판입력
+API 직접실행(사전테스트)
+참조
+1:진행중, 9:종결- 재고1> 구매관리 > 발주서 > 발주서조회 > 옵션 > 리스트탭설정의 진행상태코드 설정시 해당값을 보여줍니다.
+1:영업, 2:4매, 4:생신
+0:미전송, E:전송
+0:기안중, 1:결재중, 3: 반려, 9:결재완료
+10_0
+LOGID
+UQTY
+aT
+밀수외화금액입계
+
+--- 페이지 구분 ---
+
+TTL_CTT
+TIME_DATE
+• Example Parameter
+제목
+납기일자
+URL : https://oapi{ZONE}.ecount.com/OAPI/V2/Purchases/GetPurchasesorderList?SESSION_ID={SESSION_ID}
+1/ Replace {ZONE} with real zone information when entering Zone data.(Without {})
+"PROD_CD":"",
+"CUST_CD":
+"ListParam":{
+"PAGE_CURRENT":1,
+"PAGE_SIZE": 100,
+"BASE_DATE_FROM":"20190701",
+"BASE_DATE_TO" :"20190730"
+• Example Result
+(SUCCESS)
+"EXPIRE_DATE":"",
+QUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량 : 3/6000," 1일 허용량" : 11/10000",
+"TRACE_ID" :"db6138411aad40e42dc5e209f65f6f 3C",
+{"ORD_NO" :2,
+"ORD_DATE" :"20190729",
+"WHLCD":"00001",
+"WH_DES" :"test"
+,"PJT_CD":"00001"
+("PJT DES":"프로젝트A"
+, "EMP_CD" :"100"
+, "CUST_NAME" : "테스트"
+,"CUST" :"2312891"
+, "CUST_DES":"bmt"
+, "FOREIGN_FLAG" : "0"
+,"EXCHANGE_TYPE" :!
+"CODE DES":nULL
+[FAIL - Validation]
+"Data":null
+,"Status":"500
+,""Errors": [
+"programid":"
+,""Name" :"
+,""Code" : "EXP00001
+,""Message":"Search Range Is Less Than 31
+i iparan:nul
+,"Error":{
+"Code" : 0
+     
+MessageDetail":!
+,"Timestamp":nult
+0 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

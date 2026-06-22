@@ -1,0 +1,408 @@
+ECOUNTAPI
+2111. 110110 111 11 019 1190 19
+방법
+FAQ)
+한국 (한국어)
+품목조회API
+• 개요
+외부 서비스와 연계를 통해서 ERP의 품목을 조회할 수 있습니다.
+® 요청 데이터 형식
+항목
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+• 자료포맷 종류
+변수
+SESSION_ID
+PROD_CO
+COMMA_FLAG
+PROD_TYPE
+FROM_PROD_CD
+TO_PROD.CO
+• Result
+변수
+Error
+Data
+TAX
+설명
+POST
+applicationison
+https://sboapiZoNEy.ecount.com/OAPI2nventoryBasic/GetBasicproductsList?SESSION_ID={SESSIONLID}}
+https://oapiZONEr.ecount.com/OAPI2/InventoryBasic/GetBasicProductsList?SESSION_ID=(SESSIONLID}}
+JSON(Paramenter, Result)
+8
+CUsT
+변수명
+세션|D
+품목코드
+Comma 포함 여부
+품목구분
+품목코드
+품목코드
+변수명
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+품목명
+규격
+단위
+파
+바코드
+적요
+수량체크
+수량
+단위
+구매처
+단가A
+I_YN
+자릿수
+STRING(50)
+비가부드릴수
+강식필수
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+STRING(20000)
+CHAR(1)
+STRING(20)
+남덕내용
+- 조회하기 원하는 품목 코드를 입력합니다.
+- 여러 품목을 검색 시 구분값 1을 추가하여 조회할 수 있습니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20000자
+이카운트는 Comma(!)를 구분값인 I 로 변경하여 전송합니다.
+따라서 품목코드에 콤마가 포함되어 있는 경우 Y로 입력합니다.
+기본값 'N'
+입력값 Y', 'N'
+입력내용
+- 조회하기 원하는 품목 타입을 입력합니다.
+- 여러 품목타입을 검색 시 구분값 1을 추가하여 조회할 수 있습니다.
+입력글자제한
+- 품목타입을 입력합니다. 입력하지 않으면 전체검색됩니다.
+- 0 : 원재료
+_ 1 : 제품
+- 2 : 반제품
+STRING(20)
+STRING(20)
+- 4 : 부재료
+- 7 : 무형상품
+. 최대 기사
+입력내용
+- 조회하기 원하는 품목 코드를 입력합니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20자
+입력내용
+- 조회하기 원하는 품목 코드를 입력합니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20자
+자릿수
+필수여부
+설명
+200(정상)
+오류가 발생할 경우
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+STRING(20)
+STRING(100)
+STRING(1)
+STRING(100)
+STRING(6)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(5)
+NUMERIC(18.6)
+STRING《1
+NUMERIC(18,6)
+STRING《1)
+STRING(100)
+STRING(5)
+STRING(⑤)
+STRING(5)
+STRING(30)
+NUMERIC(6.3)
+NUMERIC(6.3)
+STRING(1)
+STRING(100)
+STRING(30)
+STRING(1)
+NUMERIC(42)
+STRING(1)
+NUMERIC(15,3)
+STRING(1)
+STRING(5)
+STRING(T)
+STRING(30)
+STRING(30)
+STRING(30)
+NUMERIC(18,6)
+STRING(1)
+품목코드
+품목명
+규격구분설정(1:규격명, 2:규격그룹, 3:규격계산, 4:규격계산그룹)
+규격(규격그룹/규격계산그룹을 선택한 경우에는 등록된 그룹의 코드 또는 명 입력)
+단위
+품목구분 : 원재료0, 부재료4, 제품1, 반제품2, 상품3, 무형상품7. 미입력 시 기본값은 3.
+세트여부 (1:사용, 0:미사용)
+품목의 수량관리 여부(0:수량관리제외, 1:수량관리대상)
+생산공정코드 : 재고1> 기초등록> 창고등록> 신규> 구분 : 공장 > 생산공정
+입고단가
+입고단가부가세포함여부 : 미포함0, 포함1. 미입력 시 기본값은 0
+출고단가부가세포함여부 : 미포함0, 포함1. 미입력 시 기본값은 0
+검색창내용
+품목그룹1코드
+품목그룹2코드
+품목그룹3코드
+바코드
+판매전표입력시 반영될 부가세율
+구매전표입력시 반영될 부가세율
+C-Portal사용여부 (1:사용, 0:미사용)
+석음
+품질검사유형: 재고2> 품질관리> 품질검사> 품질검사유형등록
+품질검사방법설정(L:전수, S:샘플링)
+샘플링비율
+C-Portal주문수량 입력 시 품목의 재고 확인여부를 설정(Y:사용, N:사용안함)
+C-Portal주문수량 입력 시 최소주문수량을 입력
+C-Portal주문수량 입력 시 최소주문단위을 설정(Y:사용, N:사용안함)
+조달기간
+최소구매단위
+구내서
+단가A
+단가A VAT 포함여부(N:포함안함, Y:포함)
+설명
+황(단건)
+도 1I 자동분개
+쇼핑몰API
+주문API(쇼핑몰관리)
+근태관리 ApI
+출/퇴근기록부(사원)
+게시판API
+
+--- 페이지 구분 ---
+
+OUILFRICEL
+난가b
+OUT_PRICE2_VAT._YN
+단가B VAT 포함여부
+OUT_PRICE3
+단가(
+OUT_PRICEB VAT_YN
+단가© VAT 포함여부
+OUT_PRICE4
+단가D
+OUT_PRICEA_VAT. N
+단가D VAT포함여부
+OUT_PRICES
+단가트
+OUT PRICES VAT WN
+단가E VAT포함여부
+OUT_PRICE6
+단가F
+OUT_PRICE6 VAT_Y
+단가F VAT포함여부
+OUT_PRICE7
+단가G
+OUT_PRICE7 VAT_WN
+단가G VAT포함여부
+OUT_PRICE8
+단가서
+OUT_PRICEB_VAT. W
+단가H VAT포함여부
+OUT_PRICE9
+단가!
+OUT_PRICE9_VAT_YN
+단가 VAT 포함여부
+OUT PRICE10
+단가
+OUT_ PRICE10_VAT_YN
+단가』 VAT포함여부
+OUTSIDE_PRICE
+외주비단가
+OUTSIDE_PRICE_VAT
+외주비단가 VAT포함여부
+LABOR WEIGHT
+노무비단가
+EXPENSES_WEIGHT
+경비가중치
+MATERIAL_cOST
+재료비표준원가
+EXPENSE_COST
+경비표준원가
+LABOR.COST
+노무비표준원가
+OUT.cOST
+외주비표준원가
+CONT1
+문자형추가항목1
+CONT2
+문자형추가항목2
+CONT3
+문자형추가항목3
+CONT4
+문자형추가항목4
+CONTS
+문자형추가항목5
+CONT6
+문자형추가항목6
+NO_USER1
+숫자형추가항목1
+NO_USER2
+숫자형추가항목2
+NO_USER3
+숫자형추가항목3
+NO_USER4
+숫자형추가항목4
+NO_USER5
+숫자형추가항목5
+NO_USER
+숫자형추가항목6
+NO_USER7
+숫자형추가항목7
+NO_USER8
+숫자형추가항목8
+NO_USER9
+숫자형추가항목이
+NO_USER10
+숫자형추가항목10
+ITEM_TYPE
+관리항목
+SERIAL_TYPE
+시리얼/로트
+PROD_SELL_TYPE
+생산전표생성-판매
+PROD_WHMOVE_TYPE
+생산전표생성-창고이동
+aC_BUY_TYPE
+품질검사요청-구매
+aC_W
+품질검사요청여부
+NUMEKIC(10,5)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(7,2)
+NUMERIC(7,2)
+NUMERIC(18.6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+® Example Parameter
+URL : https://oapi{ZONE}.ecount.com/OAPI/V2/InventoryBasic/GetBasicProductsList?SESSION_ID={SESSION_ID}}
+1/ Replace {ZONE} with real zone information when entering Zone data.(without {})
+{" PROD_CD": 00001", "PROD_TYPE":"0"}
+• Example Result
+[SUCCESS]
+"Data": {
+"EXPIRE_DATE":"",
+QUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량 : 3/6000," 1일 허용량! : 4/10000",
+"TRACE_ID:"db6138411aad40e42dc5e209f65f6f3C",
+"Result": "[{"PROD_CD": "00001",
+" PROD_DES": 'test123",
+"SIZE_FLAG": 1",
+"SIZE_DES" : "6",
+"SET_FLAG": 1",
+"BAL_FLAG": 1",
+"WH_CD": 00002",
+"IN_PRICE": "700.0000000000",
+"SIZE_CD": ,
+"IN_PRICE_VAT": 1",
+"REMARKS_WIN" : 'test",
+"CLASS_CD": 00001",
+0 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기
+단가b
+단가B VAT 포함여부(N:포함안함, Y:포함)
+단가C
+단가C VAT 포함여부(N:포함안함, Y:포함)
+단가D
+단가D VAT 포함여부(N:포함안함, Y:포함)
+단가E
+단가E VAT포함여부(N:포함안함, Y:포함)
+단가F
+단가F VAT 포함여부(N:포함안함, Y:포함)
+단가G
+단가G VAT 포함여부(N:포함안함, Y:포함)
+단가서
+단가H VAT포함여부(N:포함안함, Y:포함)
+단가!
+단가! VAT 포함여부(N:포함안함, Y:포함)
+단가)
+단가J VAT포함여부(N:포함안함, Y:포함)
+외주비단가
+외주비단가 VAT포함여부(0:포함안함, 1:포함)
+노무비단가
+경비가중치
+재료비표준원가
+경비표준원가
+노무비표준원가
+외주비표준원가
+문자형추가항목1
+문자형추가항목2
+문자형추가항목3
+문자형추가항목4
+문자형추가항목5
+문자형추가항목6
+숫자형추가항목1
+숫자형추가항목2
+숫자형추가항목3
+숫자형추가항목4
+숫자형추가항목5
+숫자형추가항목6
+숫자형추가항목7
+숫자형추가항목8
+숫자형추가항목9
+숫자형추가항목10
+관리항목(B:기본설정,M:필수입력, Y:선택입력, N:사용안함)
+시리얼(B:기본설정,M:필수입력,Y:선택입력,N:사용안함)
+생산전표생성-판매(B:기본설정,Y:사용,N:사용안함)
+생산전표생성-창고이동(B:기본설정, Y:사용, N:사용안함)
+품질검사요청-구매(B:기본설정, Y:사용,N:사용안함)
+품질검사요청여부(Y:사용, N:미사용)

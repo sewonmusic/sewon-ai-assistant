@@ -1,0 +1,263 @@
+ECOUNTAPI
+Zone
+로그인
+품목등록
+품목조회
+판매입력
+구매입력
+재고현황
+회계API
+쇼핑몰API
+주문API(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+한국 (한국어) v
+거래처등록
+• 개요
+외부 서비스와 연계를 통해서 ERP에 거래처를 등록할 수 있습니다.
+단, ERP 내 등록화면에 기본탭으로 설정된 항목만 등록할 수 있기 때문에
+등록 API의 입력필수 항목(변수)은 회사코드별로 상이하며
+기본탭에 없는 항목 전송 시, 해당 항목의 데이터는 등록되지 않습니다.
+• 요청 데이터 형식
+항목
+설명
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+• 자료포맷 종류
+SESSION_ID
+CustList
+[BulkDatas]
+UPTAE
+TEL
+EMAIL
+ADDR
+FAX
+HP_NO
+GUBUN
+O Result
+Status
+Error
+Code
+Data
+Failcnt
+SlipNos
+POST
+applicationijson
+https://sboapi(zONE}.ecount.com/OAPI2/AccountBasic/SaveBasicCust?SESSION_ID={SESSION_ID}
+https://oapi(ZONE}.ecount.com/OAPIV2/AccountBasic/SaveBasicCust?SESSION_ID={SESSION_ID}
+JSON(Paramenter, Result)
+변수명
+이카운트필수
+입력필수
+세션!D
+회사명
+업태
+종목
+이메일
+주소
+Fax
+모바일
+DM주소
+구분
+적요
+겨부
+₩
+변수명
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+성공건수
+실패건수
+처리결과
+전표번호(ERP)
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+자릿수
+STRING(50)
+STRING(30)
+STRING(100)
+STRING(50)
+STRING(50)
+STRING(50)
+STRING(50)
+STRING(100)
+STRING(8)
+STRING(500)
+STRING(2)
+STRING(1)
+STRING(30)
+NUMERIC(4.0)
+STRING(50)
+STRING(50)
+STRING(8)
+STRING(500)
+STRING(50)
+STRING(2)
+STRING(1)
+STRING(30)
+STRING(50)
+STRING(50)
+STRING(100)
+STRING(2000)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(50)
+STRING(50)
+STRING(1)
+STRING(1)
+NUMERIC(18,2)
+NUMERIC(5,2)
+NUMERIC(5,2)
+STRING(40)
+STRING(40)
+NUMERIC(3,0)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+자릿수
+필수여부
+Y
+200(성상)
+오류가 발생할 경우
+STRING(20)
+STRING(20)
+STRING(4000)
+STRING(20)
+반복부분
+전표번호(실패시 공백)
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+설명
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+반복부분
+ERP 거래처코드. 일반적으로 사업자번호 10자리를 입력.
+회사명 최대 100자
+대표자명
+업태
+종목
+전화번호
+이메일
+우편번호
+주소
+거래처코드구분 : (01:사업자등록번호, 02:주민등록번호, 03:외국인)/ 미입력 시 01 이 기본값
+세무신고거래처 구분 ((1 or NULL) =거래처동일, 2=검색입력, 3=직접입력)
+재고1> 기초등록 > 거래처등록> 신규> 옵션> 입력화면설정에서 반드시 항목설정이 되어있어야 함.
+검색입력을 선택할 경우에는, 기 등록된 거래처 코드 또는 명을 입력
+종사업장번호
+Fax
+모바일
+회계1 > 기초등록 > 거래처등록 에서 주소2에 입력하는 우편번호.
+회계1> 기초등록 > 거래처등록 에서 주소2에 입력하는 주소
+검색창내용
+일반거래처 : 11, 관세사거래처 : 13, 미입력 시 기본값은 일반(11).
+외화거래처 : Y/N, 미입력 시 기본값은 N
+외화코드 : 외화거래처사용여부가 Y인 경우 입력. 회계1 > 기초등록 > 외화코드등록에서 확인
+거래처그룹1코드
+거래처그룹2코드
+홈페이지
+적요
+출하대상거래처 : YIN, 미입력 시 기본값은 N
+거래유형(영업) 기본여부 ; YIN, 미입력 시 Y. N일 경우 위 거래유형(영업) 부가세코드 입력.
+거래유형(영업) 부가세코드 : SelfCustomizing> 환경설정 기능설정 > 공통> 부가세 2 재고부가세> 매출(영업)> 부가세율적용 에서 확인, 미입
+력 시 기본설정.
+거래유형(구매) 기본여부 : YIN, 미입력 시 Y. N일 경우 위 거래유형(구매) 부가세코드 입력.
+거래유형(구매) 부가세코드 : SerCustomizing> 환경설정 기능설정 공통 > 부가세> 재고•부가세 > 매입(구매/외주) > 부가세율적용 에서 확
+인, 미입력 시 기본설정.
+담당자코드 : 재고1> 기초등록 > 사원(담당)등록 의 담당자코드
+거래처의 채권번호관리구분 : (B:기본설정, M:필수입력, Y:선택입력, N:사용안함)
+거래처의 채무번호관리구분 : (B:기본설정, M:필수입력, Y:선택입력, N:사용안함)
+여신한도
+출고조정률
+입고조정률
+영업단가그룹 : 재고1> 기초등록 > 특별단가등록 > 거래처특별단가그룹등록
+구매단가그룹 : 재고1> 기초등록 > 특별단가등록 > 거래처특별단가그룹등록
+여신기간 : 최대 365일까지 설정.
+문자형추가항목1
+문자형추가항목2
+문자형추가항목3
+문자형추가항목4
+무사영주/항복.
+문자형추가항목6
+숫자형추가항목1
+숫자형추가항목2
+숫자형추가항목3
+설명
+
+--- 페이지 구분 ---
+
+URL : https://oapi{ZONE}.ecount.com/OAPI/V2/AccountBasic/SaveBasicCust?SESSION_ID={SESSION_ID}
+1/ Replace {ZONE} with real zone information when entering Zone data.(Without {})
+"CustList": [{
+"BulkDatas": {
+"BUSINESS_NO": 00001",
+"CUST_NAME": "Test Cust",
+"BOSS_NAME": 1"',
+"UPTAE": "",
+" JONGMOK": ",
+"TEL": "",
+"EMAIL": "",
+"POST_NO": "",
+"ADDR": "",
+"G_GUBUN": "",
+"G_BUSINESS_TYPE": ",
+"G_BUSINESS_CD": "",
+"TAX_REG_ID": ,
+"FAX": ,
+"HP_NO": !.,
+"DM_POST": .,
+"DM_ADDR" : "",
+o Example Result
+[SUCCESS]
+"Data": {
+"EXPIRE_DATE": "",
+"OUANTITY_INFO": 시간당 연속 오류 제한 건수 : 1/30," 1시간 허용량 : 3/6000," 1일 허용량 : 3/10000",
+TRACE_ID":" 0b6138411aad40e42dc5e209 f65f6f3c",
+"successCht": 2,
+"Failcnt": 0,
+"ResultDetails": "[{"Issuccess": true, "TotalError": "[1] OK, "Errors": [], "Code": nults, {"Issuccess": true,
+"TotalError": "[2] OK, "Errors": [], "Code": nult]",
+"SlipNos": nult
+"status" : "200",
+"Errors": nult,
+"Error": nult,
+"Times tamp" : 2020-03-12 14:58:18.141",
+RequestKey": nuLt,
+"IsEnabLeNoL4": false,
+"Ref reshTimestamp": nult,
+"AsyncActionKey": nult
+[FAIL - Validation]
+"Data": {
+EXPIRE_DATE":"",
+"QUANTITY_INFO": 시간당 연속 오류 제한 건수" : 1/30," 1시간 허용량 : 3/6000," 1일 허용량 : 13/10000",
+"successCnt": 0,
+"FailCnt": 2,
+wiResultoetails: (rissucessi ase, TotatErior: (2)가자코드 (배수) EFOrEN: 《COLC: POSIMES ANO DMES 38E : 가래치코트 (배수)P) : CORE ML .
+"stionos": nult
+},
+"status": "200",
+"Errors": nult,
+"Error": nult,
+Timestamp": 2020-03-12 15:00:17.217",
+"Requestkey": nult,
+isEnableNoL4": false,
+"RefreshTimestamp": nult,
+"AsyncActioney": nult
+~ 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

@@ -1,0 +1,394 @@
+[COUNTAPI
+Zone
+로그인
+• 품목등록
+품목조회
+판매입력
+구매입력
+한국 (한국어) v
+재고현황
+회계API
+외부 서비스와 연계를 통해서 ERP에 품목을 등록할 수 있습니다.
+단, ERP 내 등록화면에 기본탭으로 설정된 항목만 등록할 수 있기 때문에
+등록 API의 입력필수 항목(변수)은 회사코드별로 상이하며
+기본탭에 없는 항목 전송 시, 해당 항목의 데이터는 등록되지 않습니다.
+• 요청 데이터 형식
+항목
+POST
+applicationijson
+https://sboapi(zONE}.ecount.com/OAPIV2/InventoryBasic/SaveBasicProduct?SESSION_ID={SESSION_ID}
+https://oapizoNer.ecount.com/OAPI2/InventoryBasic/SaveBasicProduct?SESSION_ID=(SESSION_ID}
+JSON(Paramenter, Result)
+변수
+변수명
+이카운트필수
+세션|D
+UNIT
+품목코드
+품목명
+규격구분
+규격
+단위
+품목구분
+세트여부
+생산공정
+입고단가
+그룹코드
+바코드
+TAX
+적요
+조달기간
+cUsT
+구매처
+단가A
+단가B
+단가c
+단가D
+단가E
+OUT_PRICE6
+OUT_PRICE6_VAT_YN
+OUT_PRICE7
+OUT PRICET VAT.
+OUT_PRICE8
+OUT PRICEB VAT W
+OUT_PRICE9
+OUT_ PRICES_VAT. W
+OUT_PRICE10
+OUT_PRICE10 VAT._YN
+OUTSIDE_PRICE
+OUTSIDE_PRICE_UT
+LABOR_WEIGHT
+EXPENSES_WEIGHT
+MATERIAL COST
+EXPENSE_COST
+LABOR_COST
+OUT_COST
+CONT1
+단가F
+단가
+단가H
+단가!
+단가
+자릿수
+STRING(50)
+입력필수
+STRING(20)
+STRING(100)
+STRING(1)
+STRING(100)
+STRING(6)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(5)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+STRING(100)
+STRING(5)
+STRING(5)
+STRING(5)
+STRING(30)
+NUMERIC(6.3)
+NUMERIC(6,3)
+STRING(1)
+STRING(100)
+STRING(30)
+STRING(1)
+NUMERIC(4.2)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+NUMERIC(15,3)
+STRING(1)
+STRING(5)
+STRING(7)
+STRING(30)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(18,6)
+STRING(1)
+NUMERIC(7.2)
+NUMERIC(7.2)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+STRING(100)
+설명
+설명
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+반복부분
+품목코드
+품목명
+규격구분설정(1: 규격명, 2:규격그룹, 3:규격계산, 4:규격계산그룹)
+규격(규격그룹/규격계산그룹을 선택한 경우에는 등록된 그룹의 코드 또는 명 입력)
+단위
+품목구분 : 원재료0, 부재료4, 제품1, 반제품2, 상품3, 무형상품7. 미입력 시 기본값은 3.
+세트여부 (1:사용, 0:미사용)
+품목의 수량관리 여부(0:수량관리제외, 1:수량관리대상)
+생산공정코드: 재고1> 기초등록> 창고등록 신규>구분: 공장 생산공정
+입고단가
+입고단가부가세포함여부 : 미포함0, 포함1. 미입력 시 기본값은 0
+출고단가
+출고단가부가세포함여부 : 미포함0, 포함1. 미입력 시 기본값은 0
+검색창내용
+품목그룹1코드
+품목그룹2코드
+품목그룹3코드
+바코드
+판매전표입력시 반영될 부가세율
+구매전표입력시 반영될 부가세율
+C-Portal 사용여부 (1:사용, 0:미사용)
+적요
+품질검사유형 : 재고2> 품질관리> 품질검사 > 품질검사유형등록
+품질검사방법설정(L:전수, S:샘플링)
+샘플링비율
+주문서 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+판매 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+생산불출 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+생산입고 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+창고이동 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+자가사용 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+불량처리 입력 시 품목의 재고 확인여부를 설정(1:사용, 2:사용안함)
+C-Portal 주문수량 입력 시 품목의 재고 확인여부를 설정(Y:사용, N:사용안함)
+C-Portal주문수량 입력 시 최소주문수량을 입력
+C-Portal(주문수량 입력 시 최소주문단위을 설정(Y:사용, N:사용안함)
+조달기간
+최소구매단위
+구매처
+단가A
+단가A VAT 포함여부(N:포함안함, Y:포함)
+단가B
+단가B VAT 포함여부(N:포함안함, Y:포함)
+단가c
+단가C VAT 포함여부(N:포함안함, Y:포함)
+단가D
+단가D VAT 포함여부(N:포함안함, Y:포함)
+단가E
+단가E VAT 포함여부(N:포함안함, Y:포함)
+단가F
+단가F VAT 포함여부(N:포함안함, Y:포함)
+단가G
+단가G VAT 포함여부(N:포함안함, Y:포함)
+단가H
+단가서 VAT 포함여부(N:포함안함, Y:포함)
+단가!
+단가! VAT포함여부(N:포함안함, Y:포함)
+단가』
+단가J VAT포함여부(N:포함안함, Y:포함)
+외주비단가
+외주비단가 VAT 포함여부(0:포함안함, 1:포함)
+노무비단가
+경비가중치
+재료비표준원가
+경비표준원가
+노무비표준원가
+외주비표준원가
+문자형추가항목1
+~~~~....
+
+--- 페이지 구분 ---
+
+CONT3
+CONT4
+CONTS
+CONT6
+NO_USER1
+NO_USER2
+NO_USER3
+NOLUSERA
+NO_USER5
+NO_USER6
+NO_USER7
+NO_USER8
+NO_USERS
+NOLUSER10
+ITEM_TYPE
+SERIAL_TYPE
+PROD_SELL_TYPE
+PROD_WHMOVE_TVPE
+OC_BUY_TVPE
+QC_r
+문자형추가항목3
+문자형추가항목4
+문자형추가항목5
+문자형추가항목6
+숫자형추가항목1
+숫자형추가항목2
+숫자형추가항목3
+숫자형추가항목4
+숫자형추가항목5
+숫자형추가항목6
+숫자형추가항목?
+숫자형추가항목8
+숫자형추가항목g
+숫자형추가항목10
+관리항목
+시리얼/로트
+생산전표생성·판매
+생산전표생성-창고이동
+품질검사요청.구매
+품질검사요청여부
+O Result
+변수
+변수명
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+SuccessCht
+Faiicnt
+ResultDetails
+SlipNos
+EXPIRE_DATE
+QUANTITY INFO
+TRACE LD
+® Example Parameter
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+성공건수
+실패건수
+처리결과
+전표번호(ERP)
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+STRING(100)
+STRING(100)
+STRING(100)
+STRING(100)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+NUMERIC(18,6)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+STRING(1)
+자릿수
+필수여부
+200(정상)
+오류가 발생할 경우
+STRING(20)
+STRING(20)
+STRING(4000)
+STRING(20)
+반복부분
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+-: https://oapi{ZONE}.ecount.com/OAPI/V2/InventoryBasic/SaveBasicProduct?SESSION_ID={SESSION_I
+place {ZONE} with real zone information when entering zone data. (without {
+{
+"ProductList": [{
+"BuLkDatas": {
+"PROD_CD": 00001",
+"PROD_DES": "Test Product",
+"SIZE_FLAG": ,
+"SIZE_DES": "",
+"UNIT":
+"PROD_TYPE": ,
+"ISET FLAG" : ""
+"BAL_FLAG" : ,
+"WH_CO": ""',
+"IN_PRICE": ,
+"IN_PRICE_VAT" : ,
+"OUT_PRICE": ,
+"OUT_PRICE_VAT": ,
+"REMARKS_WIN": "",
+"CLASS_CD": .,
+"CLASS_CD2": ,
+"CLASS_C03": ,
+문자형추가항목3
+문자형추가항목4
+문자형추가항목5
+문자형추가항목6
+숫자형추가항목1
+숫자형추가항목2
+숫자형추가항목3
+숫자형추가항목4
+숫자형추가항목5
+숫자형추가항목6
+숫자형추가항목8
+숫자형추가항목9
+숫자형추가항목10
+관리항목(B:기본설정.M:필수입력, Y:선택입력.N:사용안함)
+시리얼(B:기본설정,M:필수입력, Y:선택입력,N:사용안함)
+품질검사요청-구매(B:기본설정, Y:사용,N:사용안함)
+품질검사요청여부(Y:사용, N:미사용)
+설명
+• Example Result
+[SUCCESS)
+"Data": {
+"EXPIRE_DATE": "',
+"OUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 1/30," 1시간 허용량 : 3/6000," 1일 허용량 : 13/10000
+"TRACE_ID" :"db6138411aad40e42dc5e209f65f6f3c",
+"SuccessCnt: 2,
+"Fallcnt : 비
+"ResultDetails": "[{"IsSuccess": true, "TotalError": "[1] OK", "Errors": [], "Code": nult}, {"Issuccess": true, "TotalError": "[2] OK', "Errors": [], "Code": nut나]",
+"SlipNos": nult
+"Status": 200",
+"Errors": nulL,
+'Timestamp" : 2020-03-12 15:33:48.958"
+"Reques tKey": nult,
+"isEnabLeNoL4": false,
+"Ref reshT imestamp": nult,
+AsyncActlonkey : nuLt
+[FAIL - Validation]
+"Data": [{
+"EXPIRE DATE": !".
+QUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 1/30," 1시간 허용량 : 3/6000," 1일 허용량! : 13/10000",
+"successCht": 0,
+" FailCnt" : 2,
+eSultpera s: 《suces : 18LSe, TotaLEror: ()거래처, KE POrE : L《COLCN CUST , INes2 0en: 《거래처, CONE ALL
+UST", "Message" : 거래처"}1, "Code": nult]
+"SLipNos": nuLt
+}],
+"Status": 200",
+"Errors": nuLt,
+•Timestamp" : 2020-03-12 15:34:11.654,
+"Reques tKey": nulL,
+"IsEnableNoL4" : false,
+"Ref reshT imestamp": nult,
+AsyncActlonkey : nuce
+0 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

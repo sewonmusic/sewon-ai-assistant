@@ -1,0 +1,151 @@
+ECOUNTAPI
+자주묻는질문(FAQ)
+회계API
+분개
+쇼핑몰API
+주문API(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+게시판입력
+API 직접실행(사전테스트)
+재고현황API
+• 개요
+외부 서비스와 연계를 통해서 ERP의 재고현황을 조회할 수 있습니다.
+® 요청 데이터 형식
+항목
+설명
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+POST
+application/json
+https://sboapiZoNEr.ecount.com/OAPI2/nventoryBalance/GetListInventoryBalanceStatus ?SESSION_ID={SESSION_ID}
+https://oapizoNer.ecount.com/OAPI2nventoryBalance/ GetListinventoryBalancestatus?SESSION_ID=(SESSIONLID)
+JSON(Paramenter, Result)
+• 자료포맷 종류
+변수
+변수명
+SESSION_ID
+세션|D
+자릿수
+STRING(50)
+이카운트필수
+양식필수
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+BASE_DATE
+검색 일시
+STRING(B)
+Y
+STRING(8000)
+TEXT
+CHAR(1)
+CHAR(1)
+CHAR(1)
+CHAR(1)
+남덕내용
+- 조회하기 원하는 날짜를 입력합니다.
+입력글자제한
+- YYYYMMDD
+입력내용
+- 조회하기 원하는 창고 코드를 입력합니다.
+입력글자제한
+- 기 등록된 창고코드를 입력합니다.
+~ 최대 5자
+입력내용
+- 조회하기 원하는 품목 코드를 입력합니다.
+입력글자제한
+- 기 등록된 품목코드를 입력합니다.
+- 최대 20자
+기본값 'N'
+입력값 Y, N'
+기본값 'N'
+입력값 Y, N
+기본값 'N'
+입력값 Y', 'N'
+기본값 'N'
+입력값 Y, N'
+변수
+변수명
+자릿수
+필수여부
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+EXPIRE_DATE
+QUANTITY_INFO
+TRACE_ID
+TotalCnt
+Result
+PROD_CD
+BAL_QTY
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+200(정상)
+오류가 발생할 경우
+EXPIRE_DATE
+허용수량
+로그확인용 일련번호
+성공건수
+Int
+수어신 날싸의 이카운트 API 현새버선서비스가 종료됩니나
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+조회에 성공한 창고별 품목 수 (사용중단/삭제창고포함)
+품목코드
+재고수량
+STRING(20)
+INT
+품목코드
+재고수량
+• Example Parameter
+RL : https://oapi{ZONE}.ecount.com/OAPI/V2/InventoryBalance/GetListinventoryBalancestatus?SESSION_ID={SESSION_ID
+/ Replace {ZONE} with real zone information when entering zone data.(without t}
+{"PROD_CD":"","WHLCD":"" , "BASE_DATE":"20190606"}
+• Example Result
+"Data": A
+utssuccess":true,
+"EXPIRE_DATE":""',
+QUANTITY_INFO": 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량 : 8/6000," 1일 허용량" : 8/10000",
+"TRACE_ID":"db6138411aad40e42dc5e209f65f6f3C",
+lota cnt : 1,
+"Result": [
+"PROD_CD":"00001",
+"BAL_OTY":"-1.0000000000"
+},
+"status": 200",
+"Error : nuct
+Timestamn: 12010-10-10 13025.55.5855
+'RequestKey": 1",
+"IsEnabLeNoL4" : false
+[FAIL - Validation]
+"Data": nult,
+"status":"500",
+"Errors": [
+Programid":""|,
+"Name"!!!,
+"Code" : "EXP00001",
+"Message":"Check Parameter [BASE_DATE]",
+wParam.nuLu
+"Error":{
+"Code":0,
+"Message" :"Check Parameter [BASE_DATE]",
+「MessageDetal(":
+"Times tamp" :nult,
+• 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+설명
+한국 (한국어)
+설명
+
+--- 페이지 구분 ---
+
+상세보기

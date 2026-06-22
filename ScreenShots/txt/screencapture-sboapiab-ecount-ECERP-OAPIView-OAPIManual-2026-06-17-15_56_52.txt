@@ -1,0 +1,195 @@
+미
+Zone
+동분개
+쇼핑몰API
+• 주문API(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+게시판입력
+API 직접실행(사전테스트)
+한국 (한국어) v
+주문API(쇼핑몰관리)
+• 개요
+외부 서비스와 연계를 통해서 ERP의 주문(쇼핑몰관리)을 입력할 수 있습니다.
+• 요청 데이터 형식
+항목
+설명
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+POST
+applicationijson
+https://sboapizoNEy.ecount.com/OAPI2/openMarketSaveOpenMarketorderNew?SESSION_ID={SESSIONLID}
+https://oapi(zoNE).ecount.com/OAPI2/0penMarketSaveOpenMarketOrderNeW?SESSION_ID={SESSION_ID}
+JSON(Paramenter, Result)
+• 자료포맷 종류
+변수
+변수명
+자릿수
+STRING(50)
+STRING(5)
+필수여부
+2 2
+수량
+ADDR
+주소
+(PE
+MEMO
+SHOP_NM
+• Result
+메모
+STRING(500)
+STRING(500)
+DATETIME
+DATETIME
+STRING(100)
+STRING(500)
+STRING(500)
+NUMERIC(28, 10)
+NUMERIC(28, 4)
+STRING(500)
+STRING(500)
+STRING(500)
+STRING(500)
+STRING(500)
+STRING(500)
+STRING《1000)
+STRING(4000)
+STRING(1)
+NUMERIC(28, 4)
+STRING(500)
+STRING(400)
+로그인 API 호출 후 받은 SESSION_ID(세션|D)
+쇼핑몰코드
+OPENMARKET_CD, GROUP_NO, ORDER_NO 중복 체크
+묶음주문번호
+주문번호
+주문일자
+결제일자
+쇼핑몰상품코드
+쇼핑몰상품명
+주문옵션
+수량
+주문금액
+주문자
+주문자연락처
+수취인
+수취인연락처1
+수취인연락처2
+우편번호
+주소
+배송요청사항
+배송비(선불/후불) - P:선불, A:착불
+배송비금액
+메모
+쇼핑몰명
+변수
+변수명
+자릿수
+필수여부
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+200(정상)
+오류가 발생할 경우
+ECOUNT 주문번호
+OPENMARKET_CD 쇼핑몰코드
+SLIP_NO
+ECOUNT 주문번호
+SLP_SER
+ECOUNT 순번
+GROUP NO
+묶음주문번호
+ORDER NO
+주문번호
+Result
+결과 메시지
+EXPIRE_DATE
+EXPIRE_DATE
+QUANTITY_INFO
+허용수량
+TRACE_D
+로그확인용 일련번호
+STRING(5)
+BIGINT
+INT
+STRING(500)
+STRING(500)
+STRING(500)
+반복부분
+쇼핑몰코드
+ECOUNT 주문번호
+ECOUNT 순번
+묶음주문번호
+주문번호
+결과 메시지
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+• Example Parameter
+URL : https://oapi{ZONE}.ecount.com/OAPI/V2/OpenMarket/SaveOpenMarketOrderNeW?SESSION_ID={SESSION_ID}
+1/ Replace {ZONE} with real zone information when entering Zone data.(without {})
+"OPENMARKET_CD": 00001",
+"ORDERS!: [A
+" PROD_NM" : TEST 상품",
+'PROD_OPT": 색상: 빨간색, 사이즈: A1",
+"ORDER_OTY": 10,
+"ORDER_AMT": 100000,
+ORDERER" : "TEST",
+'ORDERER_TEL": 010-0000-080"
+200 590/ 울 특별시 구로구 디지털로26길 61 (구로동) 에이스하이엔드타워 ,
+DELIVERY_REQUEST" : "빠른 배송 해주세요.",
+• Example Result
+SUCCESS
+"Data": {
+"EXPIRE_DATE":"",
+QUANTITY_INFO" : 시간당 연속 오류 제한 건수" : 0/30," 1시간 허용량" : 2/6000," 1일 허용량" : 6/10000",
+"TRACE_ID" :"db6138411aad40e42dc5e209f65f6f3C",
+"ResultDetails": [{
+"OPENMARKET_CD":"1",
+"SLIP NO":"123456",
+"SLIP_SER : 1.
+"GROUP_NO" :"12356966",
+"ORDER_NO" : 2018052822222",
+"Result":
+설명
+설명
+
+--- 페이지 구분 ---
+
+},
+"Status" :"200",
+"Error":nult,
+"Timestamp" :"2018년 6월 11일 오후 4:31:00"
+(FaIL - VaLicaton)
+"Data" :
+{
+"EXPIRE_DATE":"",
+"QUANTITY_INFO": 시간당 연속 오류 제한 건수" : 1/30," 1시간 허용량"'
+: 6/6000," 1일 허용량" : 11/10000",
+"ResultDetails": [{
+"OPENMARKET_CD":"1",
+"SLIP _NO" :"123456",
+"SLIP_SER" :"1",
+"GROUP_NO" : "12356966",
+"ORDER_NO" :"2018052822222",
+"Result": "중복 주문"
+}],
+},
+"Status" :"200",
+"Error": nult,
+"Timestamp" : 2018년 6월 11일 오후 4:25:47"
+• 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

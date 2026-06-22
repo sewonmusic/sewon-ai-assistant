@@ -1,0 +1,215 @@
+ECOUNTAPI
+Zone
+로그인
+품목등록
+품목조회
+판매입력
+구매입력
+재고현황
+회계API
+근태관리 API
+• 개요
+외부 서비스와 연계를 통해서 ERP의 구매를 입력할 수 있습니다.
+단, ERP 내 기본 입력화면 양식에 추가된 항목만 입력할 수 있기 때문에
+입력 API의 양식필수 항목(변수)은 회사코드별로 상이하며
+입력화면 양식에 추가되지 않은 항목 전송 시, 해당 항목의 데이터는 입력되지 않습니다.
+• 요청 데이터 형식
+항목
+설명
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+POsT
+application/json
+https:/sboapi(ZONE}.ecount.com/OAPIV2/TimeMgmtSaveclocklOut?SESSION_ID={SESSION_ID}
+https://oapizONE).ecount.com/OAPIN2TimeMgmtSaveciocklnout?SESSION _ID={SESSION LID)
+JSON(Paramenter, Result)
+® 자료포맷 종류
+변수
+SESSIONLD
+ClockinoutList
+[BulkDatas]
+변수명
+세션!D
+주문서 전표별 정보
+ATTDC_DTM.
+출근일시
+ATTDC_DTM.0
+퇴근일시
+ATTDC_ PLACELI
+출근장소
+ATTDC_PLACE_O
+퇴근장소
+ATTOC_RSN I
+LBL18163
+ATTDC_RSN O
+LBL18164
+EMP_CO
+사원번호
+HDOFF_TYPE_CD_ 출근시오전반차여부
+HDOFF_TYPE_CD_O 퇴근시오후반차여부
+OUT_WORK_TF
+출근시외근구분
+• Result
+변수
+변수명
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+SuccessCnt
+Failcnt
+Resultbetals
+SlipNos
+EXPIRE_DATE
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+성공건수
+실패건수
+처리결과
+구매번호 (ERP)
+EXPIRE_DATE
+자릿수
+STRING(50)
+이카운트필수
+양식필수
+로그인 API 호출 후 받은 SESSION_ID(세션ID)
+반복부분
+출근일시
+STRING(30)
+* 입력내용
+- 형식: {0}
+퇴근일시
+STRING(30)
+* 입력내용
+- 형식: {0}
+출근장소
+* 입력내용
+STRING(100)
+니다.
+퇴근장소
+STRING(100)
+* 입력내용
+- 퇴근장소를 입력바랍니다.
+* 입력글자제한
+- 최대 100자
+출근사유
+STRING(400)
+* 입력내용
+- 출근사유를 입력바랍니다.
+* 입력글자제한
+- 최대 400자
+퇴근사유
+STRING(400)
+* 입력내용
+- 퇴근사유를 입력바랍니다.
+* 입력글자제한
+- 최대 400자
+사원
+* 입력내용
+- 사원코드 또는 명을 입력합니다.
+STRING(50)
+* 입력글자제한
+- 기 등록된 사원코드를 입력합니다.
+- 최대 코드 14자 , 명 50자
+출근시오전반차여부
+STRING(1)
+* 입력내용
+- 오전반차아님 : N, 오전반차:
+* 입력글자제한
+- 최대 1자
+퇴근시오후반차여부
+STRING(1)
+* 입력내용
+- 오후반차아님 : N, 오후반차 : Y
+* 입력글자제한
+- 최대 1자
+출근시외근구분
+STRING(1)
+* 입력내용
+- 내근 : N, 외근 : Y
+* 입력글자제한
+~ 최대 1자
+자릿수
+필수여부
+200(정상)
+오류가 발생할 경우
+반복부분
+STRING(20)
+STRING(20)
+STRING(4000)
+STRING(20)
+구매번호(실패시 공백)
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+설명
+한국 (한국어) v
+설명
+
+--- 페이지 구분 ---
+
+QUANTITY_INFO
+TRACE_ID
+허용수량
+로그확인용 일련번호
+• Example Parameter
+URL : https://oapi{ZONE}.ecount.com/OAPI/V2/TimeMgmt/SaveCLockInout?SESSION_ID={SESSION_ID}
+1/ Replace {ZONE} with real zone information when entering Zone data.(Without {})
+1시간, 1일 동안 전송할 수 있는 허용 수량
+오류발생시 로그 확인을 위한 일련번호
+"ClockInoutList": [{
+"BulkDatas": {
+"ATTDC_DTM_I" : 2025-02-12 08:25:47",
+"ATTDC_DTM_0" : 2025-02-12 18:17:48",
+"ATTDC_PLACE_I" : ""
+"ATTDC_PLACE_0" : ",
+"ATTDC_RSN_I" : "",
+"ATTDC_RSN_0" : ,
+"EMP_CD" : "00001",
+"HDOFF_TYPE_CD_I" : "N",
+"HDOFF_TYPE_CD_0" : "N",
+"OUT_WORK_TF" : "N"
+"BulkDatas": {
+"ATTDC_DTM_I" : 2025-02-12 08:25:47",
+"ATTDC_DTM_0" : 2025-02-12 18:17:48",
+"ATTDC_PLACE_I" : '",
+o Example Result
+[SUCCESS]
+"EXPIRE_DATE":"",
+QUANTITY_INFO": 시간당 연속 오류 제한 건수 : 0/30," 1시간 허용량 : 5/6000, " 1일 허용량 : 12/10000",
+TRACE_ID:"db6138411aad40e42dc5e209f65f6f3c,
+"Failcnt": 0,
+"ResultDetails": [{"issuccess": true,"TotalError":"[전표묶음1] OK","Errors": [],"Code": nutt}
+"slionos": nult
+},
+"status" : "200",
+"Error": nult,
+"Times tamp" : 2018-06-12 13:25:55.585,
+" Reques tKey": ,
+"IsEnableNoL4": false
+[FAIL - Validation]
+"Data": {
+EXPIRE_DATE":,
+QUANTITY_INFO": 시간당 연속 오류 제한 건수 : 1/30," 1시간 허용량 : 3/6000," 1일 허용량 : 3/10000",
+"successCnt": 0,
+"FailCnt": 1,
+"ResultDetaits": [{"IsSuccess": false,"TotalError": [전표묶음1] 품목코드 (필수), 품목명 (필수), 수량 (필수)",
+"Errors": [4"CoLCd": "PROD_CD","Message": 품목코드 (필수)"}, {"ColCd": "PROD_DES","Message": "품목명 (필수)"}],"Code": nult,
+{"issuccess": false,"TotalError": [전표묶음1] 품목코드 (필수), 품목명 (필수), 수량 (필수)",
+"Errors": [{"CoLCd": PROD_CD","Message": "품목코드 (필수)"}, {"ColCd": "PROD_DES","Message": "품목명(필수)"}],"Code": nult}]
+"stipNos": null
+},
+"Status": "200",
+"Error": nult,
+"Timestamp": 2018-06-12 13:24:25. 651",
+"Reques tKey": "',
+"IsEnableNoLA": false
+• 오류 종류별 설명
+오류 종류별 상세 설명은 상세보기 링크를 클릭해 확인해 주시기 바랍니다.
+상세보기

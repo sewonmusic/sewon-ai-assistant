@@ -1,0 +1,150 @@
+[COUNTAPI
+오픈 API 이용방법
+자주묻는질문(FAQ)
+공통(필수)API
+• Zone
+로그인
+기초등록API
+거래처등록
+품목등록
+품목조회(단건)
+품목조회
+영업관리API
+견적서입력
+주문서입력
+판매입력
+구매관리API
+발주서조회
+구매입력
+생산관리API
+작업지시서입력
+생산불출입력
+생산입고 1
+(재고)출력물API
+재고현황(단건)
+재고현황
+창고별재고현황(단건)
+창고별재고현황
+회계API
+매출•매입전표 II 자동분개
+쇼핑몰API
+주문API(쇼핑몰관리)
+근태관리 API
+출/퇴근기록부(사원)
+게시판API
+Zone API
+• 개요
+외부 서비스와 연계를 위한 호스트정보인 ZoneAPI를 제공합니다.
+• Open API 호출 실패(회사정보 오류) 방지 및 IP 차단 정책
+1. 차단 정책
+• 차단 기준: 동일 IP에서 zone, login인 호출 실패가 10회 이상 반복 발생하는 경우
+2. 개발 시 필수 준수 사항(최초 연동 개발 단계)
+아래 항목은 예방 차원이 아니라, 최초 로직 개발 단계에서 반드시 반영해야 합니다.
+• zone, login 유효성 검증
+• 로그인 호출 전에 회사코드/인증정보 정확성 검증 로직을 포함합니다.
+• 실패 재시도(리트라이) 제한
+• 동일 파라미터로 실패가 반복될 경우 무한 재시도 금지
+• 재시도 횟수/간격 제한, 일정 횟수 실패 시 즉시 중단하도록 설계합니다.
+• 오류 발생 시 즉시 중단 및 알림
+• 로그인 실패 누적 시 자동 호출을 중단하고, 운영자가 인지할 수 있도록 로그/알림을 남깁니다.
+3. 영향
+• 차단 기준에 도달할 경우 해당 IP는 Open API뿐 아니라 ERP 로그인 및 서비스 이용 전반에 제한이 발생할 수 있습니다.
+따라서 연동 개발 단계에서 위 사항을 반드시 준수하여 반복 실패 호출이 발생하지 않도록 구현해야 합니다.
+• 요청 데이터 형식
+항목
+호출방식
+Content-Type
+Test URL
+Request URL
+자료포맷 종류
+POST
+application/json
+https://sboapi.ecount.com/OAPI/V2/Zone
+https://oapi.ecount.com/OAPI/V2/Zone
+JSON(Paramenter, Result)
+• 자료포맷 종류
+변수
+변수명
+COM_CODE
+회사코드
+자릿수
+6
+• Resuit
+변수
+변수명
+자릿수
+Status
+Error
+Code
+Message
+MessageDetail
+Data
+ZONE
+DOMAIN
+EXPIRE_DATE
+처리결과
+오류
+오류코드
+오류내용
+오류상세정보
+Sub domain Zone
+Domain
+EXPIRE_DATE
+30
+• Example Parameter
+URL : https://oapi.ecount.com/OAPI/V2/Zone
+"COM-CODE" :"80001"
+• Example Result
+[SUCCESS]
+{
+"Data":
+{
+"EXPIRE_DATE":""',
+"ZONE":"A",
+"DOMAIN":". ecount. com"
+},
+"Status":"200",
+"Error":nult,
+"Timestamp": 2018년 6월 11일 오후 1:09:21"
+IREL
+"Data": null,
+"Status":"500",
+"Error":
+{
+"Code":201,
+"Message":Zone 정보가 없습니다.,
+"MessageDetail":
+},
+'Timestamp": nult
+• 오류 종류별 설명
+Status
+"Error" > "Code"
+200
+없음
+정상 처리된 경우
+404
+없음
+ApI path가 잘못되어 존재하지 않는 API를 호출한 경우
+412
+없음
+AP 전송 횟수 기준을 넘은 경우
+500
+100
+Zone 정보가 없습니다.
+* 서버요청 제한 건수를 초과하는 경우 HTTP 412 Forbidden, 302 Object Moved 오류가 발생합니다.
+* Content-Type을 application/json로 보내지 않는 경우 Message에 'Unsupported Media Type' 이 표기됩니다.
+* 입력값이 유효한 JSON 데이터가 아닐 경우 Message에 Model validation state error이 표기됩니다.
+설명
+필수여부
+Y 이카운트 ERP 로그인할 때 사용하는 회사코드
+필수여부
+Y
+200(정상)
+오류가 발생할 경우
+로그인API 호출시 사용될 Zone 정보
+✓ 로그인API 호출시 사용될 도메인 정보
+주어진 날짜의 이카운트 API 현재버전서비스가 종료됩니다.
+설명
+한국 (한국어) v
+설명
+설명
