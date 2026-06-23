@@ -223,9 +223,9 @@ def _parse_table(page) -> list[dict]:
     def to_num(val: str, cast=float):
         cleaned = re.sub(r"[,\s원]", "", val)
         try:
-            return cast(cleaned) if cleaned else None
+            return cast(cleaned) if cleaned else cast(0)
         except ValueError:
-            return None
+            return cast(0)
 
     rows_data = []
     for tr in best_table.query_selector_all("tr"):

@@ -54,9 +54,9 @@ def normalize_product(raw: dict) -> dict:
     """API 응답 필드를 product_master 스키마로 변환."""
     def _float(val):
         try:
-            return float(val) if val not in (None, "", "0.0000000000") else None
+            return float(val) if val not in (None, "", "0.0000000000") else 0.0
         except (TypeError, ValueError):
-            return None
+            return 0.0
 
     return {
         "ecount_sku": raw.get("PROD_CD", "").strip(),
