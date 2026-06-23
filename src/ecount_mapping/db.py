@@ -75,3 +75,59 @@ def get_stats() -> dict:
         total = conn.execute("SELECT COUNT(*) FROM product_master").fetchone()[0]
         active = conn.execute("SELECT COUNT(*) FROM product_master WHERE is_active = 1").fetchone()[0]
         return {"total": total, "active": active, "inactive": total - active}
+
+
+def init_sales_table():
+    with _conn() as conn:
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS ecount_sales_history (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                sale_date TEXT,
+                sale_no TEXT,
+                ecount_sku TEXT,
+                product_name TEXT,
+                quantity INTEGER,
+                unit_price REAL,
+                supply_value REAL,
+                vat REAL,
+                total_amount REAL,
+                customer_name TEXT,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                UNIQUE(sale_date, sale_no, product_name)
+            )
+        """)
+        conn.commit()
+
+
+def upsert_sales(rows: list[dict]) -> int:
+    """Insert sales rows, skipping duplicates. Returns inserted count."""
+    with _conn() as conn:
+        result = conn.executemany(
+            """
+            INSERT OR IGNORE INTO ecount_sales_history
+                (sale_date, sale_no, ecount_sku, product_name, quantity,
+                 unit_price, supply_value, vat, total_amount, customer_name)
+            VALUES
+                (:sale_date, :sale_no, :ecount_sku, :product_name, :quantity,
+                 :unit_price, :supply_value, :vat, :total_amount, :customer_name)
+            """,
+            rows,
+        )
+        conn.commit()
+        return result.rowcount
+
+
+def lookup_sku(product_name: str) -> str | None:
+    """Find ecount_sku by exact or partial product_name match in product_master."""
+    with _conn() as conn:
+        row = conn.execute(
+            "SELECT ecount_sku FROM product_master WHERE product_name = ? AND is_active = 1 LIMIT 1",
+            (product_name,),
+        ).fetchone()
+        if row:
+            return row["ecount_sku"]
+        row = conn.execute(
+            "SELECT ecount_sku FROM product_master WHERE product_name LIKE ? AND is_active = 1 LIMIT 1",
+            (f"%{product_name}%",),
+        ).fetchone()
+        return row["ecount_sku"] if row else None

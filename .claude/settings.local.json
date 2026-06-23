@@ -37,7 +37,11 @@
       "Bash(tesseract /tmp/test_page.png /tmp/test_out -l kor+eng)",
       "Bash(cp \"/Users/sewon/Library/Mobile Documents/com~apple~CloudDocs/aim/ScreenShots/screencapture-sboapiab-ecount-ECERP-OAPIView-OAPIManual-2026-06-17-15_48_19.pdf\" /tmp/test_first.pdf)",
       "Bash(pdfimages -j /tmp/test_first.pdf /tmp/pdfimg)",
-      "Bash(tesseract /tmp/pdfimg-000.jpg /tmp/ocr_out -l kor+eng)"
+      "Bash(tesseract /tmp/pdfimg-000.jpg /tmp/ocr_out -l kor+eng)",
+      "Bash(sqlite3 *)",
+      "Bash(venv/bin/pip install *)",
+      "Bash(venv/bin/playwright install *)",
+      "Bash(venv/bin/python *)"
     ]
   }
 }
