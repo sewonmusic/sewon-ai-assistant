@@ -87,10 +87,8 @@ def init_sales_table():
                 ecount_sku TEXT,
                 product_name TEXT,
                 quantity INTEGER,
-                unit_price REAL,
-                supply_value REAL,
-                vat REAL,
-                total_amount REAL,
+                unit_price INTEGER,
+                total_amount INTEGER,
                 customer_name TEXT,
                 created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                 UNIQUE(sale_date, sale_no, product_name)
@@ -106,10 +104,10 @@ def upsert_sales(rows: list[dict]) -> int:
             """
             INSERT OR IGNORE INTO ecount_sales_history
                 (sale_date, sale_no, ecount_sku, product_name, quantity,
-                 unit_price, supply_value, vat, total_amount, customer_name)
+                 unit_price, total_amount, customer_name)
             VALUES
                 (:sale_date, :sale_no, :ecount_sku, :product_name, :quantity,
-                 :unit_price, :supply_value, :vat, :total_amount, :customer_name)
+                 :unit_price, :total_amount, :customer_name)
             """,
             rows,
         )

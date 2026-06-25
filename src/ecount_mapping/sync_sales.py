@@ -184,9 +184,6 @@ def _parse_table(page) -> list[dict]:
         "일자": "sale_date_no",   # "일자-No." 합쳐진 컬럼
         "품목명": "product_name",
         "수량": "quantity",
-        "단가": "unit_price",
-        "공급가액": "supply_value",
-        "부가세": "vat",
         "합계": "total_amount",
         "거래처명": "customer_name",
     }
@@ -220,12 +217,14 @@ def _parse_table(page) -> list[dict]:
                 col_idx[field] = i
                 break
 
-    def to_num(val: str, cast=float):
+    def to_num(val: str, cast=float, nullable=False):
         cleaned = re.sub(r"[,\s원]", "", val)
+        if not cleaned:
+            return None if nullable else cast(0)
         try:
-            return cast(cleaned) if cleaned else cast(0)
+            return cast(cleaned)
         except ValueError:
-            return cast(0)
+            return None if nullable else cast(0)
 
     rows_data = []
     for tr in best_table.query_selector_all("tr"):
@@ -249,12 +248,8 @@ def _parse_table(page) -> list[dict]:
             sale_date = raw_date_no
 
         qty = to_num(cell("quantity"), int)
-        supply = to_num(cell("supply_value"))
-        unit = to_num(cell("unit_price"))
-
-        # 단가 누락 시 역산
-        if unit is None and qty and supply:
-            unit = round(supply / qty, 4)
+        total = to_num(cell("total_amount"), int)
+        unit = round(total / qty) if qty else 0
 
         rows_data.append({
             "sale_date": sale_date,
@@ -262,9 +257,7 @@ def _parse_table(page) -> list[dict]:
             "product_name": cell("product_name"),
             "quantity": qty,
             "unit_price": unit,
-            "supply_value": supply,
-            "vat": to_num(cell("vat")),
-            "total_amount": to_num(cell("total_amount")),
+            "total_amount": total,
             "customer_name": cell("customer_name"),
         })
 

@@ -55,12 +55,14 @@ def run() -> None:
         sorted_dates = sorted(date_groups.keys())
         latest_date = sorted_dates[-1]
 
+        company_name = room_name.split(":")[0]
+
         for target_date in sorted_dates:
             target_rows = date_groups[target_date]
-            
+
             dir_name = f"{target_date.strftime('%Y-%m-%d')}_{room_name}"
-            out_dir = config.OUTPUT_DIR / dir_name
-            
+            out_dir = config.OUTPUT_DIR / company_name / dir_name
+
             if out_dir.exists():
                 print(f"  {target_date} 날짜는 이미 파싱됨. 건너뜀.")
                 continue
@@ -86,7 +88,7 @@ def run() -> None:
 
         media_to_move = file_clusters.get(csv_path, [])
         if media_to_move:
-            latest_out_dir = config.OUTPUT_DIR / f"{latest_date.strftime('%Y-%m-%d')}_{room_name}"
+            latest_out_dir = config.OUTPUT_DIR / company_name / f"{latest_date.strftime('%Y-%m-%d')}_{room_name}"
             latest_out_dir.mkdir(parents=True, exist_ok=True)
             moved_media = move_clustered_media(media_to_move, latest_out_dir)
             if moved_media > 0:

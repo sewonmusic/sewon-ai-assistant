@@ -42,16 +42,19 @@ def save_chat_log(text: str, out_dir: Path, target_date: date) -> None:
 
 
 def cluster_unclassified_files(csv_paths: list[Path]) -> dict[Path, list[Path]]:
-    """모든 비 CSV 파일들을 가장 가까운 시간의 CSV 파일에 매핑 (5분 이내)"""
+    """미디어 파일(사진/동영상)을 가장 가까운 시간의 CSV 파일에 매핑 (5분 이내)"""
     clusters = {csv: [] for csv in csv_paths}
-    
+
     if not csv_paths:
         return clusters
-        
+
+    media_extensions = {'.jpg', '.jpeg', '.png', '.webp', '.mp4', '.mov', '.gif'}
     csv_times = {csv: csv.stat().st_mtime for csv in csv_paths}
-    
+
     for file_path in config.RAW_DIR.iterdir():
-        if not file_path.is_file() or file_path.suffix.lower() == '.csv':
+        if not file_path.is_file():
+            continue
+        if file_path.suffix.lower() not in media_extensions:
             continue
             
         mtime = file_path.stat().st_mtime

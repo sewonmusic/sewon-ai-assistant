@@ -1,6 +1,10 @@
 # [PRD] 세원뮤직 통합 업무 자동화 프로젝트 (Project: aim)
 
 ## 0. 문서 수정 이력 (Revision History)
+* **2026-06-25 (v2.3):**
+  * 카카오톡 전처리 개선: 엑셀 파일이 잘못된 거래처 폴더로 배분되는 버그 수정, 업무일지 MD에 엑셀 Markdown 표 임베딩 기능 추가 (Sub-PRD 1 v1.6 참고)
+* **2026-06-23 (v2.2):** 
+  * 이카운트 판매현황 자동화 로직 추가: 매일 아침 cron job을 통해 이카운트 판매현황 자료를 DB(`ecount_mapping.db`)에 자동 동기화 (`src/ecount_mapping/sync_sales.py` 추가)
 * **2026-06-18 (v2.1):** 
   * 카카오톡 전처리 로직 업데이트: csv_parser를 통한 전체 대화록 날짜별 그룹화 및 중복 건너뛰기 적용
   * 미디어 매칭: 수동 미디어 파일 시간의 한계로 인해 파싱 대상 중 최신 날짜 폴더로 일괄 이동 처리
@@ -58,7 +62,7 @@
   * `01_preprocessed/`: 날짜별 그룹화 파싱 및 미디어 파일이 정렬되는 임시 저장 폴더
   * `03_archive/`: 처리가 완료된 문서/파일 등의 백업 아카이빙 (원본 대화록 CSV는 용량 관리를 위해 즉시 삭제)
 * `obsidian_vault/`: 최종 결과물 저장 및 사용자 UI
-  * `02_journals/`: LLM이 요약한 마크다운 업무 일지(.md) 보관
+  * `02_journals/`: LLM이 요약한 마크다운 업무 일지(.md)를 순수 거래처명 폴더 구조별로 분리 보관
   * 기타 검토용 마크다운 파일(예: `Mapping_Review_Pending.md`) 생성 공간
 
 ---
@@ -91,15 +95,16 @@
 ### ✅ [완료] Phase 1: 비정형 데이터 자산화 파이프라인 (`src/kakao_collector`)
 * **목표:** 카카오톡 대화록의 날짜별 그룹화 파싱 및 미디어 파일의 일괄 매칭
 * **핵심 기능:** Claude API를 활용한 텍스트/비전 데이터 요약 (`kakao_collector` 하위의 파이썬 모듈 활용)
-* **결과물:** YAML Front Matter 및 명사형 종결어미 요약이 포함된 구조화된 마크다운(`.md`) 문서를 옵시디언 볼트(`obsidian_vault/02_journals`)에 자동 저장
+* **결과물:** YAML Front Matter 및 명사형 종결어미 요약이 포함된 구조화된 마크다운(`.md`) 문서를 옵시디언 볼트(`obsidian_vault/02_journals/[순수_거래처명]`)에 자동 저장
 * **참고 (검토된 데이터 샘플):**
   * 거래처: 데임악기 (김영준, 조성찬)
   * 대화 특징: 위탁 배송(직발송) 요청 정보, 송장 번호 공유, 신제품 입고 리스트 파일(`SIRE V NewGen(가격포함).xlsx`) 및 재고 문의 파일(`Sire_Guitar_Models.xlsx`) 교환이 빈번함.
 
-### 🔄 [현재 진행] Phase 1.5: Ecount 통합 매핑 DB 및 채널 정규화
-* **목표:** 이카운트 ERP 무료 API 연동 및 SQLite 기반 통합 매핑 DB 구축 (`database/sewon_mapping.db`)
+### 🔄 [현재 진행] Phase 1.5: Ecount 통합 매핑 DB 및 판매현황 자동화
+* **목표:** 이카운트 ERP 무료 API 연동 및 SQLite 기반 통합 DB 구축 (`database/sewon_mapping.db`, `database/ecount_mapping.db`)
 * **핵심 과제:** 다채널 쇼핑몰(스마트스토어, 쿠팡 등)과 거래처 엑셀 간의 상품명/상품코드(SKU) 불일치 문제 해결 및 데이터 정규화
 * **진행 방식:** 모듈별 코딩을 통한 파이프라인 구축 및 옵시디언 기반의 휴먼 인 더 루프 검증 시스템 활성화
+* **주요 완료 사항:** 매일 아침 이카운트 판매현황 자료를 cron job으로 수집하여 `ecount_mapping.db`에 자동 입력하는 스크립트(`src/ecount_mapping/sync_sales.py`) 구축 완료
 
 ### ⏳ [예정] Phase 2: RAG 비즈니스 챗봇 도입
 * **목표:** ChromaDB 기반 벡터 검색 및 Streamlit 웹 UI 구축
